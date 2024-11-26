@@ -1,0 +1,16 @@
+{
+  "Name": "Alice Johnson",
+  "ID": 101,
+  "Gender": "Female",
+  "DOB": "15/04/1985",
+  "MobileNumber": 9876543210,
+  "Address_city": "New York",
+  "Address_state": "NY",
+  "Address_zipcode": "10001",
+  "EmailID": "alice.johnson@example.com",
+  "Occupation": "Engineer",
+  "MaritalStatus": "Married",
+  "EmergencyContactDetails": 9123456780,
+  "Status": "Visited",
+  "MedicalHistory": "Allergic to penicillin."
+}

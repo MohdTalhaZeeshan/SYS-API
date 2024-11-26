@@ -1,0 +1,11 @@
+{
+  "Name": "Dr. Alice Williams",
+  "ID": 201,
+  "Gender": "Female",
+  "EmailID": "alice.williams@example.com",
+  "Occupation": "Surgeon",
+  "SpecialistIN": "ENT",
+  "AcceptingCases": "Only Outpatient",
+  "Surgeon": "No",
+  "OfficeHours": "10 AM to 5 PM"
+}

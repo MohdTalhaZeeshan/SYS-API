@@ -1,0 +1,11 @@
+{
+  "Name": "Dr. Michael Smith",
+  "ID": 202,
+  "Gender": "Male",
+  "EmailID": "michael.smith@example.com",
+  "Occupation": "Surgeon",
+  "SpecialistIN": "ENT",
+  "AcceptingCases": "OP/Emergency",
+  "Surgeon": "No",
+  "OfficeHours": "10 AM to 5 PM"
+}

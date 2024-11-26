@@ -1,0 +1,11 @@
+{
+  "Name": "Dr. Clara Johnson",
+  "ID": 203,
+  "Gender": "Female",
+  "EmailID": "clara.johnson@example.com",
+  "Occupation": "Surgeon",
+  "SpecialistIN": "ENT",
+  "AcceptingCases": "Only Outpatient",
+  "Surgeon": "No",
+  "OfficeHours": "10 AM to 5 PM"
+}

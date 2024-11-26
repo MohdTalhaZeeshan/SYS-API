@@ -1,0 +1,66 @@
+#%RAML 1.0
+title: hospital-management-sapi
+protocols:
+  - HTTP
+  - Https
+baseUri: http://localhost:8081/api*
+  
+/fetch:
+  post:
+    description: Fetch details
+    body:
+      application/json:
+        example:
+          {
+            "query": "select * from dp"
+          } 
+    responses:
+      200:
+        description: Data Fetched Successfully
+
+/insert:
+  post:
+    description: Insert Records Into DB
+    body:
+      application/json:
+        example: !include patient-details/1.json
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              {
+                "message": "Data Inserted Successfully Into DbB"
+              }
+
+/update:
+  post:
+    description: Update Records In DB
+    body:
+      application/json:
+        example: !include doctor-details/1.json
+    responses:
+      200:
+       body:
+        application/json:
+          example:
+            {
+              "message" : "Records Updated Successfully"
+            }
+/delete:
+  post:
+    description: Delete the records
+    body:
+      application/json:
+        example: !include patient-details/2.json
+    responses:
+      200:
+        description: Successfully deleted the doctor's record
+        body:
+          application/json:
+            example: |
+              {
+                "message": "Doctor's record deleted successfully."
+              }
+      204:
+        description: Successfully deleted the doctor's record with no content returned

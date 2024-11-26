@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<sub-flow name="fetch-details" doc:id="07187ab5-924c-4578-8b59-3084e0296bd4" >
+		<logger level="INFO" doc:name="Start Logger" doc:id="9153c95b-2cb2-4758-9f5a-9afcb956b95b" message="Fetch the details" />
+		<db:select doc:name="Fetch details from database" doc:id="bd6a8933-c06b-40c5-9b5b-55e10557cbf1" config-ref="Database_Config" >
+			<db:sql ><![CDATA[#[payload.query]]]></db:sql>
+		</db:select>
+		<ee:transform doc:name="set response" doc:id="64919a7f-d4f6-4365-861f-308f4a462a1f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="End Logger" doc:id="1ee8f9fc-0e64-43e2-ab09-0ba10f20087e" message="Fetched Details" />
+	</sub-flow>
+</mule>

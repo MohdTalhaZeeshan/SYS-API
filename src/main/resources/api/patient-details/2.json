@@ -1,0 +1,16 @@
+{
+  "Name": "John Smith",
+  "ID": 102,
+  "Gender": "Male",
+  "DOB": "22/08/1990",
+  "MobileNumber": 8765432109,
+  "Address_city": "Los Angeles",
+  "Address_state": "CA",
+  "Address_zipcode": "90001",
+  "EmailID": "john.smith@example.com",
+  "Occupation": "Teacher",
+  "MaritalStatus": "Single",
+  "EmergencyContactDetails": 9345678901,
+  "Status": "Not Visited",
+  "MedicalHistory": "No known allergies."
+}

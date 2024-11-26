@@ -1,0 +1,16 @@
+{
+  "Name": "Michael Brown",
+  "ID": 104,
+  "Gender": "Male",
+  "DOB": "10/01/1982",
+  "MobileNumber": 7890123456,
+  "Address_city": "Houston",
+  "Address_state": "TX",
+  "Address_zipcode": "77001",
+  "EmailID": "michael.brown@example.com",
+  "Occupation": "Developer",
+  "MaritalStatus": "Married",
+  "EmergencyContactDetails": 9234567890,
+  "Status": "Not Visited",
+  "MedicalHistory": "High blood pressure."
+}

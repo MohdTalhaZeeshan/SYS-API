@@ -1,0 +1,18 @@
+autoDiscovery:
+  id: ""  
+
+http:
+  host: "0.0.0.0"
+  port: "8081"
+  
+router:
+  definition: "hospital-management-sapi.raml"
+  outbound: "outboundHeaders"
+  varname: "httpStatus"
+  
+ 
+
+
+ 
+ 
+ 

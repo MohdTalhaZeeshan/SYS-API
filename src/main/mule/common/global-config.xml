@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties"
+	xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd 
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+	
+	
+	 <http:listener-config name="hospital-management-sapi-httpListenerConfig">
+        <http:listener-connection host="0.0.0.0" port="8081" />
+    </http:listener-config>
+    <db:config name="Database_Config" doc:name="Database Config" doc:id="450347b1-d118-4b2b-9533-ac8b4b590bb5" >
+		<db:my-sql-connection host="${db.host}" port="${db.port}" user="${db.user}" password="${secure::db.password}" database="${db.database}"/>
+	</db:config>
+	
+	<configuration-properties doc:name="Configuration properties" doc:id="1972093b-0e7a-4ffe-89a3-5e35cebe69bd" file="config/config-dev.yaml" />
+        
+        
+     <apikit:config name="hospital-management-sapi-config" api="${router.definition}" outboundHeadersMapName="${router.outbound}" httpStatusVarName="${router.varname}" />
+	<configuration-properties doc:name="Configuration properties" doc:id="77f72eac-0e65-414e-98f9-0d318d6d8f7b" file="dbconfig\config-dev.yaml" />
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="69b4a1ec-229a-4d45-b4bb-329268b37bd3" file="dbconfig\config-secured-dev.yaml" key="keerthikavalluru" />
+    
+	
+	
+	
+	
+	
+	
+</mule>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<sub-flow name="delete-records" doc:id="c07489c5-c11b-40ab-9e84-04133f0dcdf1" >
+		<logger level="INFO" doc:name="Start Logger" doc:id="35b60165-e26b-4255-a3dc-937bb15559e0" message="Delete Records" />
+		<db:delete doc:name="Delete Records from data base" doc:id="7a509cda-e3e6-43de-be9d-bcd7d4fb3653" config-ref="Database_Config" >
+			<db:sql ><![CDATA[#[payload.query]]]></db:sql>
+			<db:input-parameters ><![CDATA[#[payload.payload]]]></db:input-parameters>
+		</db:delete>
+		<ee:transform doc:name="set response" doc:id="389af896-36b2-442c-a407-adb9bbe51176" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="End Logger" doc:id="1fbcb9bc-b3c3-4ce4-8266-c46d4b1535fc" message="Records deleted successfully" />
+	</sub-flow>
+</mule>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<sub-flow name="update-records" doc:id="dfcf4ab3-888b-408e-b6e1-7d9c3b5f0131" >
+		<logger level="INFO" doc:name="Start Logger" doc:id="fb9e01be-62e1-4c1f-a0b2-73ebaf55a162" message="Update record" />
+		<db:update doc:name="Update records in database" doc:id="efad5fb6-e914-4e51-8339-41e2214564ab" config-ref="Database_Config" >
+			<db:sql ><![CDATA[#[payload.query]]]></db:sql>
+			<db:input-parameters ><![CDATA[#[payload.inputparam]]]></db:input-parameters>
+		</db:update>
+		<ee:transform doc:name="set response" doc:id="1d303535-1b65-4d6a-aeb4-a5c64655e529" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="End Logger" doc:id="dbd42922-9468-4727-8a38-39c4b21c19ff" message="Records Updated Successfully" />
+	</sub-flow>
+</mule>

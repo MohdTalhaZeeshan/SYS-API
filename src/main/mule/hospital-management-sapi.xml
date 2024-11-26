@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd ">
+   
+    <flow name="hospital-management-sapi-main">
+        <http:listener config-ref="hospital-management-sapi-httpListenerConfig" path="/api/*">
+            <http:response statusCode="#[vars.httpStatus default 200]">
+                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+            </http:response>
+            <http:error-response statusCode="#[vars.httpStatus default 500]">
+                <http:body>#[payload]</http:body>
+                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+            </http:error-response>
+        </http:listener>
+        <apikit:router config-ref="hospital-management-sapi-config" />
+		<error-handler ref="common-global-error-handError_Handler" />
+    </flow>
+    <flow name="hospital-management-sapi-console">
+        <http:listener config-ref="hospital-management-sapi-httpListenerConfig" path="/console/*">
+            <http:response statusCode="#[vars.httpStatus default 200]">
+                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+            </http:response>
+            <http:error-response statusCode="#[vars.httpStatus default 500]">
+                <http:body>#[payload]</http:body>
+                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+            </http:error-response>
+        </http:listener>
+        <apikit:console config-ref="hospital-management-sapi-config" />
+    </flow>
+    <flow name="post:\delete:application\json:hospital-management-sapi-config">
+		<flow-ref doc:name="Flow reference to delete records" doc:id="ed3a7fec-343e-4696-9901-853e9d0334c9" name="delete-records"/>
+    </flow>
+    <flow name="post:\fetch:application\json:hospital-management-sapi-config">
+		<flow-ref doc:name="Flow reference to fetch records" doc:id="952fa181-474e-489a-aa70-294d87108509" name="fetch-details"/>
+    </flow>
+    <flow name="post:\insert:application\json:hospital-management-sapi-config">
+		<flow-ref doc:name="Flow reference insert query" doc:id="341f5420-d1eb-4364-9f6e-417b2acc5f42" name="insert-records"/>
+    </flow>
+	<flow name="post:\update:application\json:hospital-management-sapi-config">
+		<flow-ref doc:name="Flow reference to update query" doc:id="e66643ad-3534-46e0-b456-3cb1c96de3f2" name="update-records"/>
+    </flow>
+</mule>
